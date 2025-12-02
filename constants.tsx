@@ -180,6 +180,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "August 11, 2025",
     summary: "Understanding the Foundations of dcipher Network with Threshold Cryptography. This article explores Shamir's Secret Sharing, verifiable secret sharing (VSS), distributed key generation (DKG), and the dcipher Network's practical applications of threshold cryptography.",
     tags: ["Cryptography", "Security", "Threshold", "dcipher"],
-    link: "https://medium.com/@samueloyeneye1/from-polynomials-to-distributed-secrets-be34568acc63"
+    link: "https://medium.com/@samueloyeneye1/from-polynomials-to-distributed-secrets-be34568acc63",
+    thumbnail: "/assets/thumbnails/threshold_cryptography.jpg"
   }
 ];

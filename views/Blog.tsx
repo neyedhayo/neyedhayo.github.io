@@ -26,29 +26,45 @@ export const Blog: React.FC = () => {
           return (
             <ArticleWrapper
               key={post.id}
-              className="group cursor-pointer space-y-3 block"
+              className="group cursor-pointer block"
               {...wrapperProps}
             >
-              <div className="flex items-baseline justify-between border-t border-zinc-200 dark:border-zinc-800 pt-6">
-                <span className="text-sm font-mono text-zinc-400">{post.date}</span>
-                {post.link && (
-                  <div className="flex items-center gap-1 text-xs text-zinc-400 group-hover:text-primary transition-colors">
-                    <ExternalLink size={12} />
-                    <span className="hidden group-hover:inline">Read on Medium</span>
+              <div className="flex flex-col md:flex-row gap-6 border-t border-zinc-200 dark:border-zinc-800 pt-6">
+                {/* Content Section */}
+                <div className="flex-1 space-y-3">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-sm font-mono text-zinc-400">{post.date}</span>
+                    {post.link && (
+                      <div className="flex items-center gap-1 text-xs text-zinc-400 group-hover:text-primary transition-colors">
+                        <ExternalLink size={12} />
+                        <span className="hidden group-hover:inline">Read on Medium</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors font-display">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {post.summary}
+                  </p>
+
+                  <div className="pt-2 flex items-center text-primary text-sm font-bold uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    {post.link ? 'Read on Medium' : 'Read Post'} <ArrowRight size={14} className="ml-2" />
+                  </div>
+                </div>
+
+                {/* Thumbnail Section */}
+                {post.thumbnail && (
+                  <div className="shrink-0 w-full md:w-48 aspect-[16/10] rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 shadow-sm group-hover:shadow-md transition-all">
+                    <img
+                      src={post.thumbnail}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                    />
                   </div>
                 )}
-              </div>
-
-              <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors font-display">
-                {post.title}
-              </h3>
-
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                {post.summary}
-              </p>
-
-              <div className="pt-2 flex items-center text-primary text-sm font-bold uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                {post.link ? 'Read on Medium' : 'Read Post'} <ArrowRight size={14} className="ml-2" />
               </div>
             </ArticleWrapper>
           );
