@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
   {
     id: "proj1",
     title: "RebusVLM",
-    description: "Understanding LLM Reasoning Capabilities through Rebus Puzzles. Benchmarking proprietary and open source VLMs on idiomatic rebus puzzles to evaluate multi-step reasoning capabilities.",
+    description: "An evaluation pipeline for understanding LLM reasoning capabilities through the lenses of Rebus puzzles. Benchmarking proprietary models (Gemini variants) to evaluate multi-step reasoning capabilities. Claude, GPT, and open-source models coming soon...",
     technologies: ["VLMs", "Reasoning", "Python", "Evaluation"],
     links: [
       { url: "https://github.com/neyedhayo/RebusvLMs", label: "GitHub" }
@@ -37,7 +37,7 @@ export const PUBLICATIONS: Publication[] = [
     ],
     tags: ["Privacy", "Systems", "Benchmarking"],
     selected: true,
-    image: "https://placehold.co/600x400/0d9488/ffffff?text=PrivacyBench" 
+    image: "/assets/thumbnails/figure1_tradeoffs_page-0001.jpg"
   },
   {
     id: "p2",
@@ -51,7 +51,7 @@ export const PUBLICATIONS: Publication[] = [
     ],
     tags: ["Federated Learning", "Transformers", "Security"],
     selected: true,
-    image: "https://placehold.co/600x400/0d9488/ffffff?text=Secure+FL"
+    image: "/assets/thumbnails/fedtransformer.png"
   },
   {
     id: "p3",
@@ -65,7 +65,7 @@ export const PUBLICATIONS: Publication[] = [
     ],
     tags: ["Domain Generalization", "Low-Resource", "Systems"],
     selected: true,
-    image: "https://placehold.co/600x400/0d9488/ffffff?text=Domain+Gen"
+    image: "/assets/thumbnails/XLMr.png"
   }
 ];
 
