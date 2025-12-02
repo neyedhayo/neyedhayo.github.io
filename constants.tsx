@@ -7,7 +7,7 @@ export const SOCIAL_LINKS = {
   scholar: "https://scholar.google.com/citations?user=IYpvbJQAAAAJ&hl=en",
   email: "mailto:samueloyeneye1@gmail.com",
   linkedin: "https://www.linkedin.com/in/samuel-oyeneye/",
-  cv: "https://drive.google.com/file/d/1u5zZ16V7VfWAE6uMwtmiVjsavzjfK8vG/view?usp=sharing"
+  cv: "assets/cv/samuel_oyeneye_cv_2025_30_11.pdf"
 };
 
 export const PROJECTS: Project[] = [

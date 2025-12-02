@@ -44,10 +44,10 @@ export const Home = () => {
           <div className="absolute -inset-1 bg-gradient-to-br from-primary to-primary-dark rounded-full blur-xl opacity-40 group-hover:opacity-80 transition duration-1000 group-hover:duration-200"></div>
           
           {!imageError ? (
-            <img 
-              src="assets/img/Samuel_Oyeneye_Deepmind_Indaba25.jpg" 
+            <img
+              src="assets/img/samuel_with_poster_at_unilag_25 (2).jpg"
               onError={() => setImageError(true)}
-              alt="Samuel Oyeneye" 
+              alt="Samuel Oyeneye"
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white dark:border-zinc-900 shadow-2xl"
             />
           ) : (
