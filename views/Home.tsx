@@ -14,8 +14,7 @@ export const Home = () => {
               Samuel <span className="text-primary">Oyeneye</span>
             </h1>
             <p className="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed font-light">
-              Independent ML Researcher at <a href="https://mlcollective.org/" className="underline hover:text-primary transition-colors decoration-primary/50">ML Collective</a> & <br/>
-              Machine Learning Researcher at <span className="text-zinc-900 dark:text-zinc-100 font-medium border-b-2 border-primary/50">Cohere Labs (Aya)</span>.
+              Independent ML Researcher at <a href="https://mlcollective.org/" className="underline hover:text-primary transition-colors decoration-primary/50">ML Collective</a>
             </p>
           </div>
           

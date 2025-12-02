@@ -72,48 +72,93 @@ export const PUBLICATIONS: Publication[] = [
 export const NEWS: NewsItem[] = [
   {
     id: "n1",
-    date: "Aug 2025",
+    date: "Nov, 2025",
     content: (
       <span>
-        Accepted to 🧠 <strong>Simons Computational Neuroscience Imbizo</strong> Summer School <span className="text-zinc-400 font-mono text-xs">(~5% success rate)</span>.
+        Poster Presentation at <a href="https://mirg2025-draft-agenda.my.canva.site/" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">ICAIR</a> 🎤
       </span>
     ),
-    highlight: true
   },
   {
     id: "n2",
-    date: "July 2025",
+    date: "Aug, 2025",
     content: (
       <span>
-        🏆 Won <span className="text-primary font-bold dark:text-primary-dark">Best Poster Award</span> at Deep Learning Indaba.
+        🏆 Won <span className="text-primary font-bold dark:text-primary-dark">Best Poster Award</span> at Deep Learning Indaba in Rwanda
       </span>
     ),
     highlight: true
   },
   {
     id: "n3",
-    date: "Jun 2025",
+    date: "Jul, 2025",
     content: (
       <span>
-        📝 <strong>Privacy Isn't Free</strong> paper accepted into <span className="text-zinc-800 dark:text-zinc-200 font-medium">ES-FOMO III Workshop</span> at ICML 2025.
+        Completed <a href="https://credsverse.com/credentials/657dafaf-8b9d-4516-b984-a31162ab73de" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">🎓 Cohere Labs Machine Learning Summer School</a>
       </span>
     ),
   },
   {
     id: "n4",
-    date: "May 2025",
+    date: "Jun, 2025",
     content: (
       <span>
-        🚀 Joined <span className="text-primary dark:text-primary-dark font-bold">Cohere Labs</span> (Aya Expedition Project) as a Machine Learning Researcher.
+        <strong>Privacy Isn't Free</strong> paper 📝 accepted into <span className="text-zinc-800 dark:text-zinc-200 font-medium">ES-FOMO III Workshop</span> at ICML 2025
       </span>
     ),
   },
   {
     id: "n5",
-    date: "Apr 2025",
+    date: "May, 2025",
     content: (
       <span>
-        📄 <strong>Secure and Scalable HFL</strong> paper accepted into <span className="text-zinc-800 dark:text-zinc-200 font-medium">ICLR Advances in Financial AI Workshop</span>.
+        🚀 Participated in the <span className="text-primary dark:text-primary-dark font-semibold">Cohere Labs</span> (Aya Expedition Program) with the Sparse Upcycling group
+      </span>
+    ),
+  },
+  {
+    id: "n6",
+    date: "Apr, 2025",
+    content: (
+      <span>
+        First research paper 📄 accepted to <a href="https://iclr.cc/virtual/2025/33871" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">ICLR 2025 Advances in Financial AI Workshop</a>
+      </span>
+    ),
+  },
+  {
+    id: "n7",
+    date: "Sep, 2024",
+    content: (
+      <span>
+        Accepted with full scholarship grant to 🧠 <strong>Simons Computational Neuroscience Imbizo</strong> Summer School
+      </span>
+    ),
+    highlight: true
+  },
+  {
+    id: "n8",
+    date: "Sep, 2024",
+    content: (
+      <span>
+        Attended <strong>PyCon Africa</strong> in Ghana
+      </span>
+    ),
+  },
+  {
+    id: "n9",
+    date: "Aug, 2024",
+    content: (
+      <span>
+        🎓 Graduated with <strong>Second Class Upper</strong> (BSc. in Computer Science)
+      </span>
+    ),
+  },
+  {
+    id: "n10",
+    date: "Aug, 2021",
+    content: (
+      <span>
+        Selected as <strong>Core Team Lead</strong> for GDSC at my university chapter
       </span>
     ),
   }
