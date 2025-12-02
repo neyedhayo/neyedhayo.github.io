@@ -27,15 +27,14 @@ export const PUBLICATIONS: Publication[] = [
     id: "p1",
     title: "Privacy Isn't Free: Benchmarking the Systems Cost of Privacy-Preserving ML",
     authors: ["Nnaemeka Obiefuna", "Samuel Oyeneye", "Similoluwa Odunaiya", "Iremide Oyelaja", "Steven Kolawole"],
-    venue: "ICML 2025 (ES-FOMO) & WACV 2026 (Under Review)",
+    venue: "ICML 2025 (ES-FOMO)",
     year: "2025",
     description: "Developed PrivacyBench, a YAML framework benchmarking the privacy-utility-cost of PPML techniques on CNN and Transformer baselines on medical image datasets.",
     links: [
-      { url: "https://openreview.net/forum?id=MWftALXWmL", label: "OpenReview" },
-      { url: "#", label: "PDF" },
-      { url: "#", label: "Code" }
+      { url: "https://openreview.net/pdf?id=2uMRHHzAIJ", label: "OpenReview" },
+      { url: "https://github.com/Federated-Learning-MLC/PrivacyBench", label: "Code" }
     ],
-    tags: ["Privacy", "Systems", "Benchmarking"],
+    tags: ["Privacy", "Efficiency", "Systems", "Benchmarking"],
     selected: true,
     image: "/assets/thumbnails/figure1_tradeoffs_page-0001.jpg"
   },
@@ -47,7 +46,8 @@ export const PUBLICATIONS: Publication[] = [
     year: "2025",
     description: "Designed HFL transformer architectures applied on the BAF-base dataset, outperforming majority techniques on the BAF comparison benchmark.",
     links: [
-        { url: "#", label: "PDF" }
+        { url: "https://www.researchgate.net/profile/Iremide-Oyelaja/publication/395206476_SECURE_AND_SCALABLE_HORIZONTAL_FEDERATED_LEARNING_FOR_BANK_FRAUD_DETECTION/links/68b7843dca495d7698321675/SECURE-AND-SCALABLE-HORIZONTAL-FEDERATED-LEARNING-FOR-BANK-FRAUD-DETECTION.pdf", label: "PDF" },
+        { url: "https://github.com/Federated-Learning-MLC/loan-fintech-hfl", label: "Code" }
     ],
     tags: ["Federated Learning", "Transformers", "Security"],
     selected: true,
@@ -61,7 +61,7 @@ export const PUBLICATIONS: Publication[] = [
     year: "2026",
     description: "Investigating domain generalization techniques within resource-constrained environments.",
     links: [
-        { url: "#", label: "Abstract" }
+        { url: "https://arxiv.org/pdf/2510.27512", label: "ArXiv" }
     ],
     tags: ["Domain Generalization", "Low-Resource", "Systems"],
     selected: true,
@@ -131,9 +131,10 @@ export const NEWS: NewsItem[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "b1",
-    title: "Small Language Models: Why Less is More",
-    date: "July 01, 2025",
-    summary: "As we hit the ceiling of parameter scaling, the focus shifts to efficiency. Small Language Models (SLMs) distilled from their larger counterparts are enabling reasoning capabilities on edge devices while preserving privacy. This post explores the trade-offs between size, latency, and reasoning depth.",
-    tags: ["SLMs", "Efficiency", "Distillation"]
+    title: "From Polynomials to Distributed Secrets",
+    date: "August 11, 2025",
+    summary: "Understanding the Foundations of dcipher Network with Threshold Cryptography. This article explores Shamir's Secret Sharing, verifiable secret sharing (VSS), distributed key generation (DKG), and the dcipher Network's practical applications of threshold cryptography.",
+    tags: ["Cryptography", "Security", "Threshold", "dcipher"],
+    link: "https://medium.com/@samueloyeneye1/from-polynomials-to-distributed-secrets-be34568acc63"
   }
 ];

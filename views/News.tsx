@@ -11,7 +11,7 @@ export const News = () => {
         {/* Horizontal line removed as requested */}
       </div>
       
-      <div className="space-y-5">
+      <div className="space-y-1">
         {NEWS.map((item) => (
           <div 
             key={item.id} 

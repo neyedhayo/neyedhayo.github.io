@@ -42,4 +42,5 @@ export interface BlogPost {
   summary: string;
   tags: string[];
   thumbnail?: string;
+  link?: string;
 }
