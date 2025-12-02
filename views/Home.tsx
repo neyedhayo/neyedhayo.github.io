@@ -45,7 +45,7 @@ export const Home = () => {
           
           {!imageError ? (
             <img
-              src="assets/img/samuel_with_poster_at_unilag_25 (2).jpg"
+              src="/assets/img/samuel_with_poster_at_unilag_25 (4).jpg"
               onError={() => setImageError(true)}
               alt="Samuel Oyeneye"
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white dark:border-zinc-900 shadow-2xl"
