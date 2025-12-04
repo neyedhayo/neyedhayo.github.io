@@ -8,9 +8,6 @@ export const Footer = () => {
         <div className="text-sm text-zinc-500 dark:text-zinc-400">
           © {year} Steven Kolawole / Samuel Oyeneye.
         </div>
-        <div className="text-xs text-zinc-400 font-mono">
-          Refactored with React & Tailwind
-        </div>
       </div>
     </footer>
   );
