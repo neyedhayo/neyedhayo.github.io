@@ -7,7 +7,7 @@ export const SOCIAL_LINKS = {
   scholar: "https://scholar.google.com/citations?user=IYpvbJQAAAAJ&hl=en",
   email: "mailto:samueloyeneye1@gmail.com",
   linkedin: "https://www.linkedin.com/in/samuel-oyeneye/",
-  cv: "/assets/cv/samuel_oyeneye_cv_2025_30_11.pdf"
+  cv: "/assets/cv/SamuelOyeneye_CV.pdf"
 };
 
 export const PROJECTS: Project[] = [
@@ -26,7 +26,7 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: "p1",
     title: "Privacy Isn't Free: Benchmarking the Systems Cost of Privacy-Preserving ML",
-    authors: ["Nnaemeka Obiefuna", "Samuel Oyeneye", "Similoluwa Odunaiya", "Iremide Oyelaja", "Steven Kolawole"],
+    authors: ["Nnaemeka Obiefuna*", "Samuel Oyeneye*", "Similoluwa Odunaiya", "Iremide Oyelaja", "Steven Kolawole"],
     venue: "ICML 2025 (ES-FOMO)",
     year: "2025",
     description: "Developed PrivacyBench, a YAML framework benchmarking the privacy-utility-cost of PPML techniques on CNN and Transformer baselines on medical image datasets.",
@@ -41,7 +41,7 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: "p2",
     title: "Secure and Scalable Horizontal Federated Learning for Bank Fraud Detection",
-    authors: ["Nnaemeka Obeifuna*", "Samuel Oyeneye*", "et al."],
+    authors: ["Nnaemeka Obiefuna", "Iremide Oyelaja", "Similoluwa Odunaiya", "Samuel Oyeneye"],
     venue: "ICLR Advances in Financial AI Workshop",
     year: "2025",
     description: "Designed HFL transformer architectures applied on the BAF-base dataset, outperforming majority techniques on the BAF comparison benchmark.",
@@ -56,7 +56,7 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: "p3",
     title: "Effect of Domain Generalization Techniques in Low-Resource Systems",
-    authors: ["Mahi Aliyu Aminu*", "Samuel Oyeneye*", "et al."],
+    authors: ["Mahi Aminu*¹", "Chisom Chibuike*¹", "Fatimo Adebanjo*¹", "Omokolade Awosanya¹", "Samuel Oyeneye¹"],
     venue: "Under Review at EACL Student Research Workshop",
     year: "2026",
     description: "Investigating domain generalization techniques within resource-constrained environments.",

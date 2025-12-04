@@ -6,12 +6,12 @@ export const Projects = () => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex items-center justify-between mb-10">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+        <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           Projects
         </h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className={`grid grid-cols-1 gap-8 ${PROJECTS.length === 1 ? 'md:place-items-center' : 'md:grid-cols-2'}`}>
         {PROJECTS.map((project) => (
           <div 
             key={project.id}
@@ -36,11 +36,11 @@ export const Projects = () => {
                 </a>
               </div>
 
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors">
+              <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors">
                 {project.title}
               </h3>
               
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 flex-grow">
+              <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 flex-grow">
                 {project.description}
               </p>
 

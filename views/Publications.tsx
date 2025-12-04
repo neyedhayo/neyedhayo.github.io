@@ -41,7 +41,7 @@ export const Publications: React.FC<PublicationsProps> = ({ viewMode, onViewAll 
       {/* Header Area */}
       <div className="flex flex-col mb-10">
         <div className="flex items-end justify-between">
-          <h2 className="text-3xl font-bold font-display tracking-tight text-zinc-900 dark:text-zinc-100">
+          <h2 className="text-2xl font-bold font-display tracking-tight text-zinc-900 dark:text-zinc-100">
             {viewMode === 'preview' ? 'Selected Publications' : 'Publications'}
           </h2>
           
@@ -92,14 +92,14 @@ export const Publications: React.FC<PublicationsProps> = ({ viewMode, onViewAll 
             </div>
 
             <div className="flex-1 flex flex-col">
-              <h3 className="text-xl font-bold font-display text-zinc-900 dark:text-zinc-50 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors mb-2 leading-snug">
+              <h3 className="text-lg font-bold font-display text-zinc-900 dark:text-zinc-50 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors mb-2 leading-snug">
                 {pub.title}
               </h3>
-              
-              <div className="text-[15px] text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
+
+              <div className="text-base text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
                 {pub.authors.map((author, i) => (
                   <span key={i}>
-                    <span className={isMe(author) ? "text-primary dark:text-primary-dark font-bold underline decoration-primary/30 underline-offset-4" : ""}>
+                    <span className={isMe(author) ? "text-primary dark:text-primary-dark font-bold" : ""}>
                       {author}
                     </span>
                     {i < pub.authors.length - 1 ? ", " : ""}

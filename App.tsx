@@ -16,7 +16,7 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-[#0a0a0a] transition-colors duration-300 font-sans">
       <Navbar onNavigate={setView} currentView={view} />
       
-      <main className="flex-grow pt-32 px-6 w-full max-w-5xl mx-auto">
+      <main className="flex-grow pt-32 px-6 w-full max-w-4xl mx-auto">
         {view === 'home' && (
           <div className="space-y-32">
             <section id="home" className="scroll-mt-32">

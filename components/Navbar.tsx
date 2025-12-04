@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-xl">
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
         
         {/* Left Side (Empty as requested) */}
         <div className="w-10 md:w-auto"></div>

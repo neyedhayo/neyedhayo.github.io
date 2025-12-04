@@ -6,10 +6,10 @@ export const Blog: React.FC = () => {
   return (
     <div className="mb-24 animate-in fade-in duration-700">
       <div className="flex flex-col mb-12 pt-10 gap-4">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-display">
-          distributed.<span className="text-primary">mind</span> blog
+        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-display">
+          distributed.mind <span className="text-primary">blog</span>
         </h1>
-        <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed max-w-2xl">
+        <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-2xl">
           Writing about machine learning systems, efficiency, cryptography, privacy and research experiences.
         </p>
       </div>
@@ -42,11 +42,11 @@ export const Blog: React.FC = () => {
                     )}
                   </div>
 
-                  <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors font-display">
+                  <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors font-display">
                     {post.title}
                   </h3>
 
-                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     {post.summary}
                   </p>
 
