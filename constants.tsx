@@ -1,5 +1,4 @@
-import React from 'react';
-import { Publication, NewsItem, BlogPost, Project } from './types';
+import { Publication, BlogPost } from './types';
 
 export const SOCIAL_LINKS = {
   twitter: "https://twitter.com/Samuel0yeneye",
@@ -10,31 +9,26 @@ export const SOCIAL_LINKS = {
   cv: "/assets/cv/SamuelOyeneye_CV.pdf"
 };
 
-export const PROJECTS: Project[] = [
-  {
-    id: "proj1",
-    title: "RebusVLM",
-    description: "An evaluation pipeline for understanding LLM reasoning capabilities through the lenses of Rebus puzzles. Benchmarking proprietary models (Gemini variants) to evaluate multi-step reasoning capabilities. Claude, GPT, and open-source models coming soon...",
-    technologies: ["VLMs", "Reasoning", "Python", "Evaluation"],
-    links: [
-      { url: "https://github.com/neyedhayo/RebusvLMs", label: "GitHub" }
-    ]
-  }
-];
-
 export const PUBLICATIONS: Publication[] = [
   {
     id: "p1",
     title: "Privacy Isn't Free: Benchmarking the Systems Cost of Privacy-Preserving ML",
     authors: ["Nnaemeka Obiefuna*", "Samuel Oyeneye*", "Similoluwa Odunaiya", "Iremide Oyelaja", "Steven Kolawole"],
-    venue: "ICML 2025 (ES-FOMO)",
+    venue: "ICML 2025 Workshop on Efficient Systems for Foundation Models (ES-FOMO III)",
     year: "2025",
-    description: "Developed PrivacyBench, a YAML framework benchmarking the privacy-utility-cost of PPML techniques on CNN and Transformer baselines on medical image datasets.",
+    description: "Developed PrivacyBench, a systematic benchmarking framework evaluating the privacy-utility-cost tradeoffs of differential privacy and secure aggregation across CNN and Transformer architectures on medical imaging tasks.",
+    abstract: "While privacy-preserving machine learning (PPML) techniques like Differential Privacy (DP) and Federated Learning (FL) provide formal privacy guarantees, their real-world systems overhead is often overlooked. We introduce PrivacyBench, a modular evaluation framework that systematically measures computational runtime, memory footprint, communication overhead, and downstream model accuracy under varying privacy budgets (ε). Our findings reveal non-trivial throughput degradation and highlight critical hardware bottlenecks for clinical deployments.",
+    bibtex: `@inproceedings{obiefuna2025privacy,
+  title={Privacy Isn't Free: Benchmarking the Systems Cost of Privacy-Preserving ML},
+  author={Obiefuna, Nnaemeka and Oyeneye, Samuel and Odunaiya, Similoluwa and Oyelaja, Iremide and Kolawole, Steven},
+  booktitle={ICML 2025 Workshop on Efficient Systems for Foundation Models (ES-FOMO)},
+  year={2025}
+}`,
     links: [
-      { url: "https://openreview.net/pdf?id=2uMRHHzAIJ", label: "OpenReview" },
+      { url: "https://openreview.net/pdf?id=2uMRHHzAIJ", label: "Paper" },
       { url: "https://github.com/Federated-Learning-MLC/PrivacyBench", label: "Code" }
     ],
-    tags: ["Privacy", "Efficiency", "Systems", "Benchmarking"],
+    tags: ["Privacy", "Efficiency", "Systems Benchmarking", "PPML"],
     selected: true,
     image: "/assets/thumbnails/figure1_tradeoffs_page-0001.jpg"
   },
@@ -42,142 +36,52 @@ export const PUBLICATIONS: Publication[] = [
     id: "p2",
     title: "Secure and Scalable Horizontal Federated Learning for Bank Fraud Detection",
     authors: ["Nnaemeka Obiefuna", "Iremide Oyelaja", "Similoluwa Odunaiya", "Samuel Oyeneye"],
-    venue: "ICLR Advances in Financial AI Workshop",
+    venue: "ICLR 2025 Workshop on Advances in Financial AI",
     year: "2025",
-    description: "Designed HFL transformer architectures applied on the BAF-base dataset, outperforming majority techniques on the BAF comparison benchmark.",
+    description: "Architected a secure horizontal federated learning framework using tabular transformer models on the Bank Account Fraud (BAF) suite, outperforming traditional baselines under strict privacy and communication constraints.",
+    abstract: "Detecting fraudulent transactions across financial institutions without exposing proprietary or personally identifiable customer records requires robust distributed learning paradigms. We implement a horizontally federated learning system coupled with transformer encoders tailored for tabular fraud detection. Our setup achieves superior detection rates on the Bank Account Fraud (BAF) benchmark while maintaining sub-linear communication overhead across decentralized silo nodes.",
+    bibtex: `@inproceedings{obiefuna2025secure,
+  title={Secure and Scalable Horizontal Federated Learning for Bank Fraud Detection},
+  author={Obiefuna, Nnaemeka and Oyelaja, Iremide and Odunaiya, Similoluwa and Oyeneye, Samuel},
+  booktitle={ICLR 2025 Advances in Financial AI Workshop},
+  year={2025}
+}`,
     links: [
-        { url: "https://www.researchgate.net/profile/Iremide-Oyelaja/publication/395206476_SECURE_AND_SCALABLE_HORIZONTAL_FEDERATED_LEARNING_FOR_BANK_FRAUD_DETECTION/links/68b7843dca495d7698321675/SECURE-AND-SCALABLE-HORIZONTAL-FEDERATED-LEARNING-FOR-BANK-FRAUD-DETECTION.pdf", label: "PDF" },
-        { url: "https://github.com/Federated-Learning-MLC/loan-fintech-hfl", label: "Code" }
+      { url: "https://www.researchgate.net/profile/Iremide-Oyelaja/publication/395206476_SECURE_AND_SCALABLE_HORIZONTAL_FEDERATED_LEARNING_FOR_BANK_FRAUD_DETECTION/links/68b7843dca495d7698321675/SECURE-AND-SCALABLE-HORIZONTAL-FEDERATED-LEARNING-FOR-BANK-FRAUD-DETECTION.pdf", label: "Paper" },
+      { url: "https://github.com/Federated-Learning-MLC/loan-fintech-hfl", label: "Code" }
     ],
-    tags: ["Federated Learning", "Transformers", "Security"],
+    tags: ["Federated Learning", "Transformers", "Security", "Finance"],
     selected: true,
     image: "/assets/thumbnails/fedtransformer.png"
   },
   {
     id: "p3",
     title: "Effect of Domain Generalization Techniques in Low-Resource Systems",
-    authors: ["Mahi Aminu*¹", "Chisom Chibuike*¹", "Fatimo Adebanjo*¹", "Omokolade Awosanya¹", "Samuel Oyeneye¹"],
-    venue: "Under Review at EACL Student Research Workshop",
-    year: "2026",
-    description: "Investigating domain generalization techniques within resource-constrained environments.",
+    authors: ["Mahi Aminu*", "Chisom Chibuike*", "Fatimo Adebanjo*", "Omokolade Awosanya", "Samuel Oyeneye"],
+    venue: "arXiv preprint",
+    year: "2025",
+    description: "Investigated invariance learning and parameter-efficient domain generalization techniques across resource-constrained NLP systems.",
+    abstract: "Pretrained multilingual language models frequently fail to generalize across distribution shifts in under-resourced linguistic domains. This paper examines domain generalization methods—including invariant risk minimization and lightweight adapter adaptation—for low-resource NLP tasks. We identify specific failure modes under out-of-domain evaluation and propose compute-efficient adaptation strategies suitable for edge devices.",
+    bibtex: `@article{aminu2025effect,
+  title={Effect of Domain Generalization Techniques in Low-Resource Systems},
+  author={Aminu, Mahi and Chibuike, Chisom and Adebanjo, Fatimo and Awosanya, Omokolade and Oyeneye, Samuel},
+  journal={arXiv preprint arXiv:2510.27512},
+  year={2025}
+}`,
     links: [
-        { url: "https://arxiv.org/pdf/2510.27512", label: "ArXiv" }
+      { url: "https://arxiv.org/pdf/2510.27512", label: "Paper (arXiv)" }
     ],
-    tags: ["Domain Generalization", "Low-Resource", "Systems"],
+    tags: ["Domain Generalization", "Low-Resource", "Efficiency", "NLP"],
     selected: true,
     image: "/assets/thumbnails/XLMr.png"
   }
 ];
 
-export const NEWS: NewsItem[] = [
-  {
-    id: "n1",
-    date: "Nov, 2025",
-    content: (
-      <span>
-        Poster Presentation at <a href="https://mirg2025-draft-agenda.my.canva.site/" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">ICAIR</a> 🎤
-      </span>
-    ),
-  },
-  {
-    id: "n2",
-    date: "Aug, 2025",
-    content: (
-      <span>
-        🏆 Won <span className="text-primary font-bold dark:text-primary-dark">Best Poster Award</span> at Deep Learning Indaba in Rwanda
-      </span>
-    ),
-    highlight: true
-  },
-  {
-    id: "n3",
-    date: "Jul, 2025",
-    content: (
-      <span>
-        Completed <a href="https://credsverse.com/credentials/657dafaf-8b9d-4516-b984-a31162ab73de" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">🎓 Cohere Labs Machine Learning Summer School</a>
-      </span>
-    ),
-  },
-  {
-    id: "n4",
-    date: "Jun, 2025",
-    content: (
-      <span>
-        <strong>Privacy Isn't Free</strong> paper 📝 accepted into <span className="text-zinc-800 dark:text-zinc-200 font-medium">ES-FOMO III Workshop</span> at ICML 2025
-      </span>
-    ),
-  },
-  {
-    id: "n5",
-    date: "May, 2025",
-    content: (
-      <span>
-        🚀 Participated in the <span className="text-primary dark:text-primary-dark font-semibold">Cohere Labs</span> (Aya Expedition Program) with the Sparse Upcycling group
-      </span>
-    ),
-  },
-  {
-    id: "n6",
-    date: "Apr, 2025",
-    content: (
-      <span>
-        First research paper 📄 accepted to <a href="https://iclr.cc/virtual/2025/33871" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-dark font-semibold hover:underline">ICLR 2025 Advances in Financial AI Workshop</a>
-      </span>
-    ),
-  },
-  {
-    id: "n7",
-    date: "Sep, 2024",
-    content: (
-      <span>
-        Accepted with full scholarship grant to 🧠 <strong>Simons Computational Neuroscience Imbizo</strong> Summer School
-      </span>
-    ),
-    highlight: true
-  },
-  {
-    id: "n8",
-    date: "Sep, 2024",
-    content: (
-      <span>
-        Attended <strong>PyCon Africa</strong> in Ghana
-      </span>
-    ),
-  },
-  {
-    id: "n9",
-    date: "Aug, 2024",
-    content: (
-      <span>
-        🎓 Graduated with <strong>Second Class Upper</strong> (BSc. in Computer Science)
-      </span>
-    ),
-  },
-  {
-    id: "n10",
-    date: "Aug, 2021",
-    content: (
-      <span>
-        Selected as <strong>Core Team Lead</strong> for GDSC at my university chapter
-      </span>
-    ),
-  }
-];
-
-// NOTE: To add a new blog post, simply add a new object to this array below.
-// Example:
-// {
-//   id: "b2",
-//   title: "My New Post",
-//   date: "August 2025",
-//   summary: "Description here...",
-//   tags: ["AI", "New"]
-// }
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "b1",
     title: "From Polynomials to Distributed Secrets",
-    date: "August 11, 2025",
+    date: "August 2025",
     summary: "Understanding the Foundations of dcipher Network with Threshold Cryptography. This article explores Shamir's Secret Sharing, verifiable secret sharing (VSS), distributed key generation (DKG), and the dcipher Network's practical applications of threshold cryptography.",
     tags: ["Cryptography", "Security", "Threshold", "dcipher"],
     link: "https://medium.com/@samueloyeneye1/from-polynomials-to-distributed-secrets-be34568acc63",

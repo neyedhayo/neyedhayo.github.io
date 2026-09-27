@@ -1,156 +1,210 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowRight, FileText, Code, Globe } from 'lucide-react';
 import { PUBLICATIONS } from '../constants';
+import { ArrowLeft, ArrowUpRight, Image as ImageIcon } from 'lucide-react';
+import { Publication } from '../types';
 
 interface PublicationsProps {
-  viewMode: 'preview' | 'full';
-  onViewAll: () => void;
+  onBackToHome?: () => void;
 }
 
-export const Publications: React.FC<PublicationsProps> = ({ viewMode, onViewAll }) => {
-  const [selectedTag, setSelectedTag] = useState<string>('All');
+export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
+  const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({});
+  const [expandedBibtex, setExpandedBibtex] = useState<Record<string, boolean>>({});
+  const [expandedFigures, setExpandedFigures] = useState<Record<string, boolean>>({});
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Extract unique tags for filter
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    PUBLICATIONS.forEach(pub => pub.tags.forEach(tag => tags.add(tag)));
-    return ['All', ...Array.from(tags)];
+  // Group all publications by year in descending order
+  const groupedByYear = useMemo(() => {
+    const map: Record<string, Publication[]> = {};
+    PUBLICATIONS.forEach(pub => {
+      const year = pub.year || 'Other';
+      if (!map[year]) map[year] = [];
+      map[year].push(pub);
+    });
+    const sortedYears = Object.keys(map).sort((a, b) => Number(b) - Number(a));
+    return sortedYears.map(year => ({ year, pubs: map[year] }));
   }, []);
 
-  // Filter Logic
-  const filteredPubs = useMemo(() => {
-    if (viewMode === 'preview') {
-      return PUBLICATIONS.filter(p => p.selected).slice(0, 3);
-    }
-    if (selectedTag === 'All') return PUBLICATIONS;
-    return PUBLICATIONS.filter(p => p.tags.includes(selectedTag));
-  }, [viewMode, selectedTag]);
+  const toggleAbstract = (id: string) => {
+    setExpandedAbstracts(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
-  const isMe = (name: string) => name.toLowerCase().includes('samuel') || name.toLowerCase().includes('oyeneye');
+  const toggleBibtex = (id: string) => {
+    setExpandedBibtex(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
-  const getLinkIcon = (label: string) => {
-    const lower = label.toLowerCase();
-    if (lower.includes('pdf') || lower.includes('paper') || lower.includes('abstract')) return <FileText size={12} />;
-    if (lower.includes('code') || lower.includes('github')) return <Code size={12} />;
-    return <Globe size={12} />;
+  const toggleFigure = (id: string) => {
+    setExpandedFigures(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const copyBibtex = (id: string, bibtex?: string) => {
+    if (!bibtex) return;
+    navigator.clipboard.writeText(bibtex);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-      
-      {/* Header Area */}
-      <div className="flex flex-col mb-10">
-        <div className="flex items-end justify-between">
-          <h2 className="text-2xl font-bold font-display tracking-tight text-zinc-900 dark:text-zinc-100">
-            {viewMode === 'preview' ? 'Selected Publications' : 'Publications'}
-          </h2>
-          
-          {viewMode === 'preview' && (
-            <button 
-              onClick={onViewAll}
-              className="group flex items-center gap-2 text-sm font-semibold text-primary dark:text-primary-dark hover:text-primary-hover transition-colors font-display"
-            >
-              View Full List <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          )}
-        </div>
+    <div className="space-y-7 pb-16 text-[#222222]">
+      {onBackToHome && (
+        <button
+          onClick={onBackToHome}
+          className="inline-flex items-center gap-1.5 text-[15px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-2 py-0.5 rounded font-medium transition-colors"
+        >
+          <ArrowLeft size={14} />
+          <span>Back to home</span>
+        </button>
+      )}
 
-        {/* Filter Tags (Only in Full Mode) - Moved Below Header */}
-        {viewMode === 'full' && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all border ${
-                  selectedTag === tag
-                    ? 'bg-primary text-white border-primary dark:bg-primary-dark dark:border-primary-dark dark:text-zinc-900 shadow-lg shadow-primary/20'
-                    : 'bg-zinc-50 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-200'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        )}
+      {/* Header */}
+      <div>
+        <h1 className="text-[36px] sm:text-[38px] font-normal text-[#1a1a1a] tracking-tight leading-tight">
+          Publications
+        </h1>
       </div>
 
-      {/* Grid List */}
-      <div className="flex flex-col gap-8">
-        {filteredPubs.map((pub) => (
-          <article 
-            key={pub.id} 
-            className="group relative flex flex-col md:flex-row gap-6 p-5 -mx-5 rounded-2xl hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-all duration-300 border border-transparent hover:border-zinc-100 dark:hover:border-zinc-800"
-          >
-            {/* Thumbnail */}
-            <div className="shrink-0 w-full md:w-48 aspect-[16/10] rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 shadow-sm group-hover:shadow-md transition-all">
-              <img 
-                src={pub.image} 
-                alt={pub.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-              />
-            </div>
+      {/* Publications by Year */}
+      <div className="space-y-9 pt-2">
+        {groupedByYear.map(({ year, pubs }) => (
+          <section key={year} className="space-y-5">
+            <h2 className="text-[21px] font-normal text-[#1a1a1a] border-b border-[#e5e5e5] pb-1">
+              {year}
+            </h2>
 
-            <div className="flex-1 flex flex-col">
-              <h3 className="text-lg font-bold font-display text-zinc-900 dark:text-zinc-50 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors mb-2 leading-snug">
-                {pub.title}
-              </h3>
+            <div className="space-y-5">
+              {pubs.map(pub => {
+                const isAbstractOpen = !!expandedAbstracts[pub.id];
+                const isBibtexOpen = !!expandedBibtex[pub.id];
+                const isFigureOpen = !!expandedFigures[pub.id];
+                const isCopied = copiedId === pub.id;
+                const primaryLink = pub.links.find(l =>
+                  l.label.toLowerCase().includes('paper') ||
+                  l.label.toLowerCase().includes('pdf') ||
+                  l.label.toLowerCase().includes('openreview') ||
+                  l.label.toLowerCase().includes('arxiv')
+                );
+                const codeLink = pub.links.find(l => l.label.toLowerCase().includes('code'));
 
-              <div className="text-base text-zinc-600 dark:text-zinc-400 mb-3 leading-relaxed">
-                {pub.authors.map((author, i) => (
-                  <span key={i}>
-                    <span className={isMe(author) ? "text-primary dark:text-primary-dark font-bold" : ""}>
-                      {author}
-                    </span>
-                    {i < pub.authors.length - 1 ? ", " : ""}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 text-sm mb-4">
-                <span className="text-zinc-500 dark:text-zinc-300 font-medium italic">
-                  {pub.venue}
-                </span>
-                <span className="w-1 h-1 bg-zinc-300 dark:bg-zinc-600 rounded-full"></span>
-                <span className="text-zinc-400 font-mono">
-                  {pub.year}
-                </span>
-              </div>
-
-              {/* Links & Tags */}
-              <div className="mt-auto flex items-center justify-between gap-4">
-                 <div className="flex gap-3">
-                    {pub.links.map(link => (
-                      <a 
-                        key={link.url}
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-300 hover:border-primary hover:text-primary dark:hover:text-primary-dark dark:hover:border-primary-dark transition-colors shadow-sm"
+                return (
+                  <article key={pub.id} className="space-y-1">
+                    {/* Title */}
+                    <div>
+                      <a
+                        href={primaryLink ? primaryLink.url : '#'}
+                        target={primaryLink ? '_blank' : '_self'}
+                        rel="noopener noreferrer"
+                        className="text-[17px] font-bold text-[#1a1a1a] hover:text-[#135a28] hover:bg-[#7FEE64]/20 px-1 -mx-1 rounded transition-colors inline-flex items-baseline gap-1 leading-snug"
                       >
-                        {getLinkIcon(link.label)} {link.label}
+                        <span>{pub.title}</span>
+                        {primaryLink && (
+                          <ArrowUpRight size={13} className="text-zinc-400 shrink-0 self-center" />
+                        )}
                       </a>
-                    ))}
-                 </div>
-                 
-                 {/* Only show first 2 tags on preview to save space */}
-                 <div className="hidden md:flex gap-2">
-                    {pub.tags.slice(0, 2).map(tag => (
-                        <span key={tag} className="text-[10px] uppercase tracking-wider text-zinc-400 font-semibold bg-zinc-100 dark:bg-zinc-800/50 px-2 py-1 rounded-sm">
-                            {tag}
-                        </span>
-                    ))}
-                 </div>
-              </div>
-            </div>
-          </article>
-        ))}
+                    </div>
 
-        {filteredPubs.length === 0 && (
-            <div className="text-center py-12 text-zinc-500 dark:text-zinc-400 italic">
-                No publications found for this category.
+                    {/* Authors */}
+                    <div className="text-[15px] text-[#333]">
+                      {pub.authors.map((author, index) => (
+                        <span key={index}>
+                          <span>{author}</span>
+                          {index < pub.authors.length - 1 ? ', ' : ''}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Venue */}
+                    <div className="italic text-[14px] text-[#666]">
+                      {pub.venue}
+                    </div>
+
+                    {/* Links & Brackets */}
+                    <div className="pt-0.5 flex flex-wrap items-center gap-2 text-[14px]">
+                      {primaryLink && (
+                        <a
+                          href={primaryLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-1.5 py-0.5 rounded text-[13.5px] font-medium transition-colors"
+                        >
+                          [paper]
+                        </a>
+                      )}
+                      {codeLink && (
+                        <a
+                          href={codeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-1.5 py-0.5 rounded text-[13.5px] font-medium transition-colors"
+                        >
+                          [code]
+                        </a>
+                      )}
+                      {pub.abstract && (
+                        <button
+                          onClick={() => toggleAbstract(pub.id)}
+                          className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-1.5 py-0.5 rounded text-[13.5px] font-medium transition-colors"
+                        >
+                          [abstract]
+                        </button>
+                      )}
+                      {pub.bibtex && (
+                        <button
+                          onClick={() => toggleBibtex(pub.id)}
+                          className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-1.5 py-0.5 rounded text-[13.5px] font-medium transition-colors"
+                        >
+                          [bibtex]
+                        </button>
+                      )}
+                      {pub.image && (
+                        <button
+                          onClick={() => toggleFigure(pub.id)}
+                          className="inline-flex items-center gap-1 bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-1.5 py-0.5 rounded text-[13.5px] font-medium transition-colors"
+                        >
+                          <ImageIcon size={12} />
+                          <span>[figure]</span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Abstract Box */}
+                    {isAbstractOpen && pub.abstract && (
+                      <div className="mt-2 text-[14.5px] text-[#333] bg-[#fcfaf7] border-l-3 border-[#7FEE64] pl-3 py-1.5 leading-relaxed font-sans">
+                        <p>{pub.abstract}</p>
+                      </div>
+                    )}
+
+                    {/* BibTeX Box */}
+                    {isBibtexOpen && pub.bibtex && (
+                      <div className="mt-2 relative text-xs font-mono text-zinc-800 bg-[#fcfaf7] border border-zinc-200 p-3 rounded overflow-x-auto">
+                        <button
+                          onClick={() => copyBibtex(pub.id, pub.bibtex)}
+                          className="absolute top-2 right-2 text-xs bg-[#7FEE64] text-black font-semibold px-2 py-0.5 rounded hover:bg-[#6be050] transition-colors"
+                        >
+                          {isCopied ? 'Copied!' : 'Copy'}
+                        </button>
+                        <pre className="whitespace-pre">{pub.bibtex}</pre>
+                      </div>
+                    )}
+
+                    {/* Figure Preview */}
+                    {isFigureOpen && pub.image && (
+                      <div className="mt-2 max-w-md border border-zinc-200 rounded overflow-hidden bg-white p-2">
+                        <img
+                          src={pub.image}
+                          alt={`${pub.title} figure`}
+                          className="w-full h-auto object-contain rounded"
+                        />
+                        <div className="mt-1 text-[11px] text-zinc-500 font-sans text-center">
+                          Figure: Systems evaluation from <em>{pub.title}</em>
+                        </div>
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
             </div>
-        )}
+          </section>
+        ))}
       </div>
     </div>
   );

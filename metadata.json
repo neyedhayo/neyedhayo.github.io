@@ -1,4 +1,7 @@
 {
   "name": "Samuel Oyeneye - Research Portfolio",
-  "description": "A high-performance, minimalist research portfolio featuring efficient ML systems research, publications, and blog posts."
+  "description": "A high-performance, minimalist research portfolio featuring efficient ML systems research, publications, and blog posts.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

@@ -1,56 +1,81 @@
-import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
+import React, { useState, useEffect } from 'react';
+import { Navbar, PageTab } from './components/Navbar';
 import { Home } from './views/Home';
-import { News } from './views/News';
-import { Projects } from './views/Projects';
 import { Publications } from './views/Publications';
 import { Blog } from './views/Blog';
+import { Footer } from './components/Footer';
 
-export type ViewState = 'home' | 'publications' | 'blog';
+const getInitialTab = (): PageTab => {
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  if (hash === 'papers' || hash === 'publications') return 'papers';
+  if (hash === 'writings' || hash === 'blog' || hash === 'essays') return 'writings';
+  return 'about';
+};
 
 const App: React.FC = () => {
-  const [view, setView] = useState<ViewState>('home');
+  const [currentTab, setCurrentTab] = useState<PageTab>(getInitialTab);
+  const [activePostId, setActivePostId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentTab(getInitialTab());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleSelectTab = (tab: PageTab) => {
+    setCurrentTab(tab);
+    if (tab !== 'writings') {
+      setActivePostId(null);
+    }
+    window.location.hash = tab;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenPost = (postId: string) => {
+    setActivePostId(postId);
+    setCurrentTab('writings');
+    window.location.hash = 'writings';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-[#0a0a0a] transition-colors duration-300 font-sans">
-      <Navbar onNavigate={setView} currentView={view} />
-      
-      <main className="flex-grow pt-32 px-6 w-full max-w-4xl mx-auto">
-        {view === 'home' && (
-          <div className="space-y-32">
-            <section id="home" className="scroll-mt-32">
-              <Home />
-            </section>
+    <div className="min-h-screen bg-[#fffdfa] text-[#222222] font-palatino selection:bg-[#7FEE64] selection:text-black antialiased">
+      <div className="max-w-[880px] mx-auto px-6 sm:px-8 flex flex-col min-h-screen">
+        <Navbar
+          currentTab={currentTab}
+          onSelectTab={handleSelectTab}
+        />
 
-            <section id="news" className="scroll-mt-32">
-              <News />
-            </section>
+        <main className="flex-1 pt-1">
+          {currentTab === 'about' && (
+            <div className="animate-in fade-in duration-200">
+              <Home
+                onNavigate={handleSelectTab}
+                onOpenPost={handleOpenPost}
+              />
+            </div>
+          )}
 
-            <section id="publications-preview" className="scroll-mt-32">
-              <Publications viewMode="preview" onViewAll={() => setView('publications')} />
-            </section>
+          {currentTab === 'papers' && (
+            <div className="animate-in fade-in duration-200">
+              <Publications onBackToHome={() => handleSelectTab('about')} />
+            </div>
+          )}
 
-            <section id="projects" className="scroll-mt-32">
-              <Projects />
-            </section>
-          </div>
-        )}
+          {currentTab === 'writings' && (
+            <div className="animate-in fade-in duration-200">
+              <Blog
+                initialPostId={activePostId}
+                onBackToHome={() => handleSelectTab('about')}
+              />
+            </div>
+          )}
+        </main>
 
-        {view === 'publications' && (
-           <div className="animate-in fade-in duration-500">
-             <Publications viewMode="full" onViewAll={() => {}} />
-           </div>
-        )}
-
-        {view === 'blog' && (
-          <div className="animate-in fade-in duration-500">
-            <Blog />
-          </div>
-        )}
-      </main>
-
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };

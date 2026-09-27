@@ -1,13 +1,48 @@
 import React from 'react';
+import { SOCIAL_LINKS } from '../constants';
 
-export const Footer = () => {
-  const year = new Date().getFullYear();
+export const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="mt-24 pb-12 pt-12 border-t border-zinc-200 dark:border-zinc-800/50">
-      <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-sm text-zinc-500 dark:text-zinc-400">
-          © {year} Steven Kolawole / Samuel Oyeneye.
-        </div>
+    <footer className="mt-14 pt-6 pb-14 border-t border-[#e5e5e5] text-[14px] text-[#777] font-serif flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span>© {currentYear} Samuel Oyeneye</span>
+      </div>
+
+      <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+        <a
+          href={SOCIAL_LINKS.scholar}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded transition-colors"
+        >
+          Scholar
+        </a>
+        <a
+          href={SOCIAL_LINKS.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={SOCIAL_LINKS.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded transition-colors"
+        >
+          X
+        </a>
+        <a
+          href={SOCIAL_LINKS.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded transition-colors"
+        >
+          GitHub
+        </a>
       </div>
     </footer>
   );

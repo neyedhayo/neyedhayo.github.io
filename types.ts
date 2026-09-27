@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface Publication {
   id: string;
   title: string;
@@ -7,6 +5,8 @@ export interface Publication {
   venue: string;
   year: string;
   description: string;
+  abstract?: string;
+  bibtex?: string;
   links: {
     url: string;
     label: string;
@@ -14,25 +14,6 @@ export interface Publication {
   tags: string[];
   image?: string;
   selected?: boolean;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  technologies: string[];
-  links: {
-    url: string;
-    label: string;
-  }[];
-}
-
-export interface NewsItem {
-  id: string;
-  date: string;
-  content: React.ReactNode;
-  link?: string;
-  highlight?: boolean;
 }
 
 export interface BlogPost {
