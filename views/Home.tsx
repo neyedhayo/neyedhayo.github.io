@@ -69,39 +69,78 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
           </h1>
 
           <p>
-            I am an independent Machine Learning Researcher collaborating with{' '}
+            I am a Masters student in Mathematical Sciences at{' '}
+            <a
+              href="https://aims.ac.za/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0c401c] font-normal hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              AIMS - Stellenbosch University
+            </a>{' '}
+            as a{' '}
+            <a
+              href="https://ai.aims.ac.za/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0c401c] font-normal hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              Google DeepMind Scholar
+            </a>, and an Independent Researcher at{' '}
             <a
               href="https://mlcollective.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors font-medium underline decoration-[#7FEE64] decoration-2 underline-offset-2"
+              className="text-[#0c401c] font-normal hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
             >
               ML Collective
             </a>{' '}
-            and{' '}
+            advised by{' '}
             <a
-              href="https://cohere.com/research"
+              href="https://stevenkolawole.github.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors font-medium underline decoration-[#7FEE64] decoration-2 underline-offset-2"
+              className="italic text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
             >
-              Cohere Labs
-            </a>, where I work on making large-scale AI and foundation models more computationally efficient, robust, and privacy-preserving.
+              Steven Kolawole
+            </a>. Previously, I was a Research Scholar at the{' '}
+            <a
+              href="https://imbizo.africa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0c401c] font-normal hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              Simons Computational Neuroscience Imbizo
+            </a>, supervised by{' '}
+            <a
+              href="https://scholar.google.com/citations?user=U7NxV-MAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="italic text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              Kira Düsterwald
+            </a>,{' '}
+            <a
+              href="https://colleenjg.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="italic text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              Colleen Gillon
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://www.williamdorrell.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="italic text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
+            >
+              Will Dorrell
+            </a>.
           </p>
 
           <p>
-            My research focuses on privacy-preserving machine learning (PPML), federated learning, and systems bottlenecks under hardware constraints. In 2025, our research received the{' '}
-            <span>Best Poster Award</span>{' '}
-            at the{' '}
-            <a
-              href="https://deeplearningindaba.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors font-medium underline decoration-[#7FEE64] decoration-2 underline-offset-2"
-            >
-              Deep Learning Indaba
-            </a>{' '}
-            in Rwanda.
+            In recent times, my research focuses on unveiling the black box in Generative Language and Vision Models. I like to think that the fundamental steps to solve some of these crucial problems come from leveraging the cognitive and neural principles of neuroscientific representations, with a well-designed and scalable architecture that prioritises computational efficiency, hardware and safety mechanisms.
           </p>
 
           {/* Links Row */}
@@ -115,6 +154,15 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
               className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors font-medium"
             >
               Scholar
+            </a>
+            <span className="mx-2 text-zinc-400">·</span>
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors font-medium"
+            >
+              GitHub
             </a>
             <span className="mx-2 text-zinc-400">·</span>
             <a
@@ -267,44 +315,34 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
           </div>
         </div>
 
-        {/* Right Column: .yLog */}
+        {/* Right Column: Blog (Yona style) */}
         <div className="w-full md:w-[37%] space-y-5">
           <div>
-            <span className="bg-[#7FEE64] text-black font-bold px-2.5 py-0.5 rounded text-[20px] border border-black/10 shadow-xs inline-block font-mono tracking-tight">
-              .yLog
-            </span>
+            <h2 className="text-[25px] font-serif italic text-[#1a1a1a] mb-1">
+              Blog
+            </h2>
           </div>
 
-          <div className="space-y-4">
-            {BLOG_POSTS.map(post => {
-              const year = post.date.match(/\d{4}/)?.[0] || '2025';
-              const sideDate = post.date.replace(year, '').trim().toUpperCase() || 'AUG';
-
-              return (
-                <div key={post.id} className="flex items-baseline justify-between gap-3">
-                  <div className="flex items-baseline gap-2.5 flex-1 min-w-0">
-                    <span className="text-[13px] text-[#888] font-mono shrink-0">
-                      {year}
-                    </span>
-                    <button
-                      onClick={() => onOpenPost(post.id)}
-                      className="text-left text-[15.5px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded leading-snug block font-medium transition-colors"
-                    >
-                      {post.title}
-                    </button>
-                  </div>
-                  <span className="text-[12px] text-[#888] font-mono uppercase shrink-0">
-                    {sideDate}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <ul className="space-y-4 list-none p-0 m-0">
+            {BLOG_POSTS.map(post => (
+              <li key={post.id} className="space-y-1">
+                <button
+                  onClick={() => onOpenPost(post.id)}
+                  className="text-left text-[16px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 -mx-1 rounded leading-snug block font-medium transition-colors"
+                >
+                  {post.title}
+                </button>
+                <time className="block text-[14px] text-[#666]">
+                  {post.date}
+                </time>
+              </li>
+            ))}
+          </ul>
 
           <div className="pt-1">
             <button
               onClick={() => onNavigate('writings')}
-              className="inline-flex items-center gap-1 text-[#135a28] text-[15px] hover:bg-[#7FEE64] hover:text-black px-2 py-0.5 rounded font-medium transition-colors"
+              className="inline-flex items-center gap-1 text-[#135a28] text-[15px] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded font-medium transition-colors"
             >
               <span>View all posts →</span>
             </button>

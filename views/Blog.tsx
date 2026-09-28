@@ -4,10 +4,9 @@ import { ArrowLeft, ArrowUpRight, Clock, Share2, Check } from 'lucide-react';
 
 interface BlogProps {
   initialPostId?: string | null;
-  onBackToHome?: () => void;
 }
 
-export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
+export const Blog: React.FC<BlogProps> = ({ initialPostId }) => {
   const [selectedPostId, setSelectedPostId] = useState<string | null>(initialPostId || null);
   const [copiedLink, setCopiedLink] = useState(false);
 
@@ -37,6 +36,19 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
     return sortedYears.map(year => ({ year, posts: map[year] }));
   }, []);
 
+  const formatSideDate = (dateStr?: string, currentYear?: string) => {
+    if (!dateStr) return '';
+    let clean = dateStr;
+    if (currentYear) {
+      clean = clean.replace(currentYear, '');
+    }
+    clean = clean.replace(/,/g, '').trim();
+    // Capitalize only first letter of month/words, rest lowercase
+    return clean.replace(/\b([A-Za-z])([A-Za-z]*)\b/g, (_, first, rest) => {
+      return first.toUpperCase() + rest.toLowerCase();
+    });
+  };
+
   // Full Essay Reading View
   if (selectedPost) {
     return (
@@ -55,7 +67,7 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
           </h1>
 
           <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-[#777]">
-            <span>{selectedPost.date}</span>
+            <span className="font-palatino font-serif text-[#777]">{selectedPost.date}</span>
             <span aria-hidden="true">·</span>
             <span className="flex items-center gap-1">
               <Clock size={13} /> 6 min read
@@ -177,16 +189,6 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
   // List of Writings
   return (
     <div className="space-y-7 pb-16 text-[#222222]">
-      {onBackToHome && (
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-1.5 text-[15px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-2 py-0.5 rounded font-medium transition-colors"
-        >
-          <ArrowLeft size={14} />
-          <span>Back to home</span>
-        </button>
-      )}
-
       {/* Header */}
       <div className="space-y-2">
         <div>
@@ -202,42 +204,45 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
       {/* Writings List with Year in front and Date at the side */}
       <div className="space-y-6 pt-4">
         {groupedByYear.map(({ year, posts }) => (
-          <div key={year} className="flex flex-col sm:flex-row gap-4 sm:gap-10 items-start py-2 border-b border-[#e5e5e5]/60 last:border-0">
-            {/* Year in front like screenshot */}
-            <div className="w-16 shrink-0 text-[18px] text-[#777] font-mono font-medium pt-0.5">
+          <div
+            key={year}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start py-3 border-b border-[#e5e5e5]/60 last:border-0"
+          >
+            {/* Year in front — horizontally aligned with first title */}
+            <div className="w-16 sm:w-20 shrink-0 text-[17.5px] text-[#777] font-palatino font-serif font-normal leading-snug select-none">
               {year}
             </div>
 
             {/* Posts */}
-            <div className="flex-1 w-full space-y-4">
+            <div className="flex-1 w-full min-w-0 space-y-4">
               {posts.map(post => {
-                const sideDate = post.date.replace(year, '').trim().toUpperCase() || 'AUG';
+                const sideDate = formatSideDate(post.date, year);
 
                 return (
                   <article key={post.id} className="space-y-1.5">
                     <div className="flex items-baseline justify-between gap-4">
                       <button
                         onClick={() => setSelectedPostId(post.id)}
-                        className="text-[17.5px] font-normal text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded text-left leading-snug font-medium transition-colors"
+                        className="text-[17.5px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 -mx-1.5 -my-0.5 rounded text-left leading-snug font-medium transition-colors"
                       >
                         {post.title}
                       </button>
 
                       {/* Date at the side */}
-                      <span className="text-[13px] text-[#777] font-mono uppercase tracking-wider shrink-0">
+                      <span className="text-[15.5px] text-[#777] font-palatino font-serif font-normal leading-snug shrink-0 whitespace-nowrap">
                         {sideDate}
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] px-1.5">
+                    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[13px]">
                       <button
                         onClick={() => setSelectedPostId(post.id)}
-                        className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-2 py-0.5 rounded text-[12.5px] font-medium transition-colors"
+                        className="bg-[#7FEE64]/20 text-[#135a28] hover:bg-[#7FEE64] hover:text-black border border-[#7FEE64]/60 px-2.5 py-0.5 rounded text-[12.5px] font-medium transition-colors"
                       >
                         Read essay →
                       </button>
                       <span aria-hidden="true" className="text-zinc-300">·</span>
-                      <span className="text-[12.5px] text-[#777]">6 min read</span>
+                      <span className="text-[13px] text-[#777]">6 min read</span>
                       {post.link && (
                         <>
                           <span aria-hidden="true" className="text-zinc-300">·</span>
@@ -245,7 +250,7 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId, onBackToHome }) => {
                             href={post.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-0.5 text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded text-[12.5px] font-medium transition-colors"
+                            className="inline-flex items-center gap-0.5 text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1.5 py-0.5 rounded font-medium transition-colors"
                           >
                             <span>Medium</span>
                             <ArrowUpRight size={11} />

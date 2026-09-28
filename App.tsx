@@ -60,7 +60,7 @@ const App: React.FC = () => {
 
           {currentTab === 'papers' && (
             <div className="animate-in fade-in duration-200">
-              <Publications onBackToHome={() => handleSelectTab('about')} />
+              <Publications />
             </div>
           )}
 
@@ -68,7 +68,6 @@ const App: React.FC = () => {
             <div className="animate-in fade-in duration-200">
               <Blog
                 initialPostId={activePostId}
-                onBackToHome={() => handleSelectTab('about')}
               />
             </div>
           )}

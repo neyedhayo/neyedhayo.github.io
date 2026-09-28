@@ -4,6 +4,7 @@ export interface Publication {
   authors: string[];
   venue: string;
   year: string;
+  date?: string;
   description: string;
   abstract?: string;
   bibtex?: string;

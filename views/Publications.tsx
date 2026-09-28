@@ -1,19 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { PUBLICATIONS } from '../constants';
-import { ArrowLeft, ArrowUpRight, Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
 import { Publication } from '../types';
 
-interface PublicationsProps {
-  onBackToHome?: () => void;
-}
-
-export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
+export const Publications: React.FC = () => {
   const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({});
   const [expandedBibtex, setExpandedBibtex] = useState<Record<string, boolean>>({});
   const [expandedFigures, setExpandedFigures] = useState<Record<string, boolean>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Group all publications by year in descending order
+  // Group all publications by year in descending order, with within-year sorting
   const groupedByYear = useMemo(() => {
     const map: Record<string, Publication[]> = {};
     PUBLICATIONS.forEach(pub => {
@@ -22,7 +18,14 @@ export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
       map[year].push(pub);
     });
     const sortedYears = Object.keys(map).sort((a, b) => Number(b) - Number(a));
-    return sortedYears.map(year => ({ year, pubs: map[year] }));
+    return sortedYears.map(year => {
+      const sortedPubs = [...map[year]].sort((a, b) => {
+        const timeA = a.date ? Date.parse(a.date) : 0;
+        const timeB = b.date ? Date.parse(b.date) : 0;
+        return timeB - timeA;
+      });
+      return { year, pubs: sortedPubs };
+    });
   }, []);
 
   const toggleAbstract = (id: string) => {
@@ -44,34 +47,45 @@ export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
+  const formatSideDate = (dateStr?: string, currentYear?: string) => {
+    if (!dateStr) return '';
+    let clean = dateStr;
+    if (currentYear) {
+      clean = clean.replace(currentYear, '');
+    }
+    clean = clean.replace(/,/g, '').trim();
+    // Capitalize only first letter of month/words, rest lowercase
+    return clean.replace(/\b([A-Za-z])([A-Za-z]*)\b/g, (_, first, rest) => {
+      return first.toUpperCase() + rest.toLowerCase();
+    });
+  };
+
   return (
     <div className="space-y-7 pb-16 text-[#222222]">
-      {onBackToHome && (
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-1.5 text-[15px] text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-2 py-0.5 rounded font-medium transition-colors"
-        >
-          <ArrowLeft size={14} />
-          <span>Back to home</span>
-        </button>
-      )}
-
       {/* Header */}
-      <div>
+      <div className="space-y-2">
         <h1 className="text-[36px] sm:text-[38px] font-normal text-[#1a1a1a] tracking-tight leading-tight">
           Publications
         </h1>
+        <p className="italic text-[#555] text-[15.5px]">
+          research papers, preprints, and journals
+        </p>
       </div>
 
-      {/* Publications by Year */}
-      <div className="space-y-9 pt-2">
+      {/* Publications by Year — Charlie's blog style with Year on left and Date at side */}
+      <div className="space-y-8 pt-2">
         {groupedByYear.map(({ year, pubs }) => (
-          <section key={year} className="space-y-5">
-            <h2 className="text-[21px] font-normal text-[#1a1a1a] border-b border-[#e5e5e5] pb-1">
+          <div
+            key={year}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start py-3 border-b border-[#e5e5e5]/60 last:border-0"
+          >
+            {/* Year in front — horizontally aligned with first title */}
+            <div className="w-16 sm:w-20 shrink-0 text-[17px] text-[#777] font-palatino font-serif font-normal leading-snug select-none">
               {year}
-            </h2>
+            </div>
 
-            <div className="space-y-5">
+            {/* Pubs list */}
+            <div className="flex-1 w-full min-w-0 space-y-6">
               {pubs.map(pub => {
                 const isAbstractOpen = !!expandedAbstracts[pub.id];
                 const isBibtexOpen = !!expandedBibtex[pub.id];
@@ -84,22 +98,20 @@ export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
                   l.label.toLowerCase().includes('arxiv')
                 );
                 const codeLink = pub.links.find(l => l.label.toLowerCase().includes('code'));
+                const sideDate = formatSideDate(pub.date, year);
 
                 return (
-                  <article key={pub.id} className="space-y-1">
-                    {/* Title */}
-                    <div>
-                      <a
-                        href={primaryLink ? primaryLink.url : '#'}
-                        target={primaryLink ? '_blank' : '_self'}
-                        rel="noopener noreferrer"
-                        className="text-[17px] font-bold text-[#1a1a1a] hover:text-[#135a28] hover:bg-[#7FEE64]/20 px-1 -mx-1 rounded transition-colors inline-flex items-baseline gap-1 leading-snug"
-                      >
-                        <span>{pub.title}</span>
-                        {primaryLink && (
-                          <ArrowUpRight size={13} className="text-zinc-400 shrink-0 self-center" />
-                        )}
-                      </a>
+                  <article key={pub.id} className="space-y-1.5 pb-2 border-b border-[#f0eee9] last:border-0">
+                    {/* Title + Side Date (Horizontally aligned, muted normal serif date) */}
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="text-[17px] font-bold text-[#1a1a1a] leading-snug">
+                        {pub.title}
+                      </h3>
+                      {sideDate && (
+                        <span className="text-[15.5px] text-[#777] font-palatino font-serif font-normal leading-snug shrink-0 whitespace-nowrap">
+                          {sideDate}
+                        </span>
+                      )}
                     </div>
 
                     {/* Authors */}
@@ -203,7 +215,7 @@ export const Publications: React.FC<PublicationsProps> = ({ onBackToHome }) => {
                 );
               })}
             </div>
-          </section>
+          </div>
         ))}
       </div>
     </div>

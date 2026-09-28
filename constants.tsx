@@ -16,6 +16,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: ["Nnaemeka Obiefuna*", "Samuel Oyeneye*", "Similoluwa Odunaiya", "Iremide Oyelaja", "Steven Kolawole"],
     venue: "ICML 2025 Workshop on Efficient Systems for Foundation Models (ES-FOMO III)",
     year: "2025",
+    date: "11 Jun 2025",
     description: "Developed PrivacyBench, a systematic benchmarking framework evaluating the privacy-utility-cost tradeoffs of differential privacy and secure aggregation across CNN and Transformer architectures on medical imaging tasks.",
     abstract: "While privacy-preserving machine learning (PPML) techniques like Differential Privacy (DP) and Federated Learning (FL) provide formal privacy guarantees, their real-world systems overhead is often overlooked. We introduce PrivacyBench, a modular evaluation framework that systematically measures computational runtime, memory footprint, communication overhead, and downstream model accuracy under varying privacy budgets (ε). Our findings reveal non-trivial throughput degradation and highlight critical hardware bottlenecks for clinical deployments.",
     bibtex: `@inproceedings{obiefuna2025privacy,
@@ -38,6 +39,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: ["Nnaemeka Obiefuna", "Iremide Oyelaja", "Similoluwa Odunaiya", "Samuel Oyeneye"],
     venue: "ICLR 2025 Workshop on Advances in Financial AI",
     year: "2025",
+    date: "05 Mar 2025",
     description: "Architected a secure horizontal federated learning framework using tabular transformer models on the Bank Account Fraud (BAF) suite, outperforming traditional baselines under strict privacy and communication constraints.",
     abstract: "Detecting fraudulent transactions across financial institutions without exposing proprietary or personally identifiable customer records requires robust distributed learning paradigms. We implement a horizontally federated learning system coupled with transformer encoders tailored for tabular fraud detection. Our setup achieves superior detection rates on the Bank Account Fraud (BAF) benchmark while maintaining sub-linear communication overhead across decentralized silo nodes.",
     bibtex: `@inproceedings{obiefuna2025secure,
@@ -59,14 +61,15 @@ export const PUBLICATIONS: Publication[] = [
     title: "Effect of Domain Generalization Techniques in Low-Resource Systems",
     authors: ["Mahi Aminu*", "Chisom Chibuike*", "Fatimo Adebanjo*", "Omokolade Awosanya", "Samuel Oyeneye"],
     venue: "arXiv preprint",
-    year: "2025",
+    year: "2026",
+    date: "20 Feb 2026",
     description: "Investigated invariance learning and parameter-efficient domain generalization techniques across resource-constrained NLP systems.",
     abstract: "Pretrained multilingual language models frequently fail to generalize across distribution shifts in under-resourced linguistic domains. This paper examines domain generalization methods—including invariant risk minimization and lightweight adapter adaptation—for low-resource NLP tasks. We identify specific failure modes under out-of-domain evaluation and propose compute-efficient adaptation strategies suitable for edge devices.",
-    bibtex: `@article{aminu2025effect,
+    bibtex: `@article{aminu2026effect,
   title={Effect of Domain Generalization Techniques in Low-Resource Systems},
   author={Aminu, Mahi and Chibuike, Chisom and Adebanjo, Fatimo and Awosanya, Omokolade and Oyeneye, Samuel},
   journal={arXiv preprint arXiv:2510.27512},
-  year={2025}
+  year={2026}
 }`,
     links: [
       { url: "https://arxiv.org/pdf/2510.27512", label: "Paper (arXiv)" }
