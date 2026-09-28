@@ -64,8 +64,8 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
 
         {/* RHS Bio */}
         <div className="flex-1 space-y-3.5 text-[16.5px] leading-[1.65] text-[#222222]">
-          <h1 className="text-[36px] sm:text-[38px] font-bold text-[#1a1a1a] tracking-tight leading-tight">
-            Samuel Oyeneye (Dayo)
+          <h1 className="text-[36px] sm:text-[38px] text-[#1a1a1a] tracking-tight leading-tight">
+            <span className="font-bold">Samuel Oyeneye</span> <span className="font-normal">(Dayo)</span>
           </h1>
 
           <p>
