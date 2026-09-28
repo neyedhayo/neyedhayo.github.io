@@ -79,9 +79,11 @@ export const Publications: React.FC = () => {
             key={year}
             className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start py-3 border-b border-[#e5e5e5]/60 last:border-0"
           >
-            {/* Year in front — horizontally aligned with first title */}
-            <div className="w-16 sm:w-20 shrink-0 text-[17px] text-[#777] font-palatino font-serif font-normal leading-snug select-none">
-              {year}
+            {/* Year in front — green highlight box like .yLog in writings */}
+            <div className="w-20 sm:w-24 shrink-0 select-none">
+              <span className="bg-[#7FEE64] text-black font-bold px-2.5 py-0.5 rounded text-[16px] sm:text-[17px] border border-black/10 shadow-xs inline-block font-mono tracking-tight leading-snug">
+                {year}
+              </span>
             </div>
 
             {/* Pubs list */}

@@ -192,9 +192,9 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId }) => {
       {/* Header */}
       <div className="space-y-2">
         <div>
-          <span className="bg-[#7FEE64] text-black font-bold px-2.5 py-0.5 rounded text-[28px] sm:text-[32px] border border-black/10 shadow-xs inline-block font-mono tracking-tight">
+          <h1 className="text-[32px] sm:text-[36px] font-bold text-[#1a1a1a] font-mono tracking-tight inline-block">
             .yLog
-          </span>
+          </h1>
         </div>
         <p className="italic text-[#555] text-[15.5px]">
           logging Yuta&apos;s Arc on machine learning systems, efficiency, interpretability, AI Safety and anything fun
@@ -208,9 +208,11 @@ export const Blog: React.FC<BlogProps> = ({ initialPostId }) => {
             key={year}
             className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start py-3 border-b border-[#e5e5e5]/60 last:border-0"
           >
-            {/* Year in front — horizontally aligned with first title */}
-            <div className="w-16 sm:w-20 shrink-0 text-[17.5px] text-[#777] font-palatino font-serif font-normal leading-snug select-none">
-              {year}
+            {/* Year in front — green highlight badge */}
+            <div className="w-20 sm:w-24 shrink-0 select-none">
+              <span className="bg-[#7FEE64] text-black font-bold px-2.5 py-0.5 rounded text-[16px] sm:text-[17px] border border-black/10 shadow-xs inline-block font-mono tracking-tight leading-snug">
+                {year}
+              </span>
             </div>
 
             {/* Posts */}
