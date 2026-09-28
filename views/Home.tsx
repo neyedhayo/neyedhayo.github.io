@@ -185,7 +185,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
         {/* Left Column: Publications */}
         <div className="w-full md:w-[63%] space-y-6">
           <div>
-            <h2 className="text-[25px] font-serif italic text-[#1a1a1a] mb-1">
+            <h2 className="text-[25px] font-serif italic text-[#1a1a1a] pb-2 mb-3 border-b border-[#e5e5e5]">
               Publications
             </h2>
             <p className="italic text-[#555] text-[15px] mb-5">
@@ -309,7 +309,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
         {/* Right Column: Blog (Yona style) */}
         <div className="w-full md:w-[37%] space-y-5">
           <div>
-            <h2 className="text-[25px] font-serif italic text-[#1a1a1a] mb-1">
+            <h2 className="text-[25px] font-serif italic text-[#1a1a1a] pb-2 mb-3 border-b border-[#e5e5e5]">
               Blog
             </h2>
           </div>
