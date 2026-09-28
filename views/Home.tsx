@@ -93,17 +93,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenPost }) => {
               rel="noopener noreferrer"
               className="text-[#0c401c] font-normal hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
             >
-              ML Collective
-            </a>{' '}
-            advised by{' '}
-            <a
-              href="https://stevenkolawole.github.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="italic text-[#135a28] hover:bg-[#7FEE64] hover:text-black px-1 rounded transition-colors"
-            >
-              Steven Kolawole
-            </a>. Previously, I was a Research Scholar at the{' '}
+              ML Collective. Previously, I was a Research Scholar at the{' '}
             <a
               href="https://imbizo.africa/"
               target="_blank"
